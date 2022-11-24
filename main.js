@@ -4,7 +4,7 @@ const retorno_box = document.createElement('div');
 
 const style_retorno_box = {
     marginTop: '20px',
-    maxWidth: '650px',
+    width: '50vw',
     height: '80vh',
     background: '#ffffffff',
     padding: '10px',
