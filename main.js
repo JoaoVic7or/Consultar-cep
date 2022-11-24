@@ -1,26 +1,30 @@
 const input_cep = document.getElementById('consultar_cep');
 const enviar_consulta = document.getElementById('enviar_consulta');
 const retorno_box = document.createElement('div');
-const salvar_cache = JSON.parse(localStorage.getItem("salvar_cache")) || [] ;
 
-retorno_box.style.marginTop = "20px";
-retorno_box.style.width = "650px";
-retorno_box.style.height = "80vh";
-retorno_box.style.background = "#ffffffff";
-retorno_box.style.padding = "10px";
-retorno_box.style.borderRadius = "20px";
-retorno_box.style.overflow = "scroll";
-retorno_box.style.overflowX = "hidden";
+const style_retorno_box = {
+    marginTop: '20px',
+    width: '650px',
+    height: '80vh',
+    background: '#ffffffff',
+    padding: '10px',
+    borderRadius: '20px',
+    overflow: 'scroll',
+    overflowX: 'hidden',
+    scrollBehavior: 'smooth'
+};
+Object.assign(retorno_box.style, style_retorno_box);
+
 document.body.appendChild(retorno_box);
 
 enviar_consulta.addEventListener('click', (evento)=>{
     evento.preventDefault()
-    if(input_cep.value === ""){
+    if(input_cep.value === "" | input_cep.value.length >= 9 & !input_cep.value.includes('-')| input_cep.value.length < 8){
         return false;
     }else{
         buscarCep();
     }
-})
+});
 
 async function buscarCep(){
     let consultaCep = await fetch(`https://viacep.com.br/ws/${input_cep.value}/json/`);
@@ -38,28 +42,34 @@ async function buscarCep(){
 
     const corAleatoria = "hsl(" + Math.random() * 360 + ", 100%, 75%)";
     
-    info_cep.style.color = "black";
-    info_cep.style.background = corAleatoria;
-    info_cep.style.padding = "2px 5px";
-    info_cep.style.color = "black";
-    info_cep.style.float = "left";
+    const styles_info_cep = {
+        color: 'black',
+        background: corAleatoria,
+        padding: '2px 5px',
+        color: 'black',
+        float: 'left'
+    };
+    Object.assign(info_cep.style, styles_info_cep);
 
     //Cria cada div com um endereço e cep
-    div_labels.style.display = "flex";
-    div_labels.style.justifyContent = "space-between";
-    div_labels.style.alignItems = "center";
-    div_labels.style.borderRadius = "10px";
-    div_labels.style.textAlign = "center";
-    div_labels.style.wordBreak = "break";
-    div_labels.style.background = "white";
-    div_labels.style.padding = "10px 10px";
-    div_labels.style.color = "black";
-    div_labels.style.border = "1px solid black";
-    div_labels.style.marginTop = "4px";
+    const styles_div_labels = {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderRadius: '10px',
+        textAlign: 'center',
+        wordBreak: 'break',
+        background: 'white',
+        padding: '10px 10px',
+        color: 'black',
+        border: '1px solid black',
+        marginTop: '4px'
+    };
+    Object.assign(div_labels.style, styles_div_labels);
 
     const link = document.createElement('a');
     var link_img = document.createElement('img');
-    link_img.src = "assets/map.svg"
+    link_img.src = "assets/map.svg";
     link.href = `https://www.google.com.br/maps/search/${input_cep.value + " " + consultaCepConvert.logradouro + ', ' + consultaCepConvert.bairro + ', ' + consultaCepConvert.localidade}`;
     link.target = "_blank";
     link.appendChild(link_img);
@@ -75,12 +85,11 @@ async function buscarCep(){
         link.style.visibility = "show"
     }
 
-    
     div_labels.appendChild(info_cep);
     div_labels.appendChild(retorno);
     div_labels.appendChild(link);
     
+    console.log(retorno_box)
     retorno_box.appendChild(div_labels);
-
     retorno_box.scrollTop = retorno_box.scrollHeight;
 }
