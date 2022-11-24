@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
 }
+
 body{
     background: linear-gradient(309deg, rgba(0,243,255,1) 24%, rgba(46,0,255,1) 87%, rgba(0,0,255,1) 100%, rgba(0,212,255,1) 100%);
     display: flex;
@@ -34,7 +35,8 @@ h1{
     border: 1px solid black;
     padding: 10px 10px;
     border-radius: 10px;
-    width: 500px;
+    min-width: 10vw;
+    max-width: 500px;
     text-align: center;
     font-size: 1.3rem;
 }
@@ -69,4 +71,17 @@ h1{
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+@media screen and (max-width: 500px) {
+    body{
+        background: red;
+        flex-direction: column;
+        width: 50vh;
+    }
+    .container{
+        all: initial;
+        width: 10px;
+        background-color: blue;
+    }
 }
