@@ -3,12 +3,12 @@ const enviar_consulta = document.getElementById('enviar_consulta');
 const retorno_box = document.createElement('div');
 
 const style_retorno_box = {
-    marginTop: '20px',
     width: '50vw',
     height: '50vh',
     background: '#ffffffff',
     padding: '10px',
-    borderRadius: '20px',
+    boxSizing: 'border-box',
+    borderRadius: '0 0 20px 20px',
     overflow: 'scroll',
     overflowX: 'hidden',
     scrollBehavior: 'smooth'

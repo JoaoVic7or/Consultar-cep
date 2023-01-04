@@ -14,15 +14,16 @@ body{
 
 .container{
     background-color: #fff;
-    padding: 20px 50px 20px 50px;
+    padding: 20px;
     box-sizing: border-box;
-    width: 51vw;
-    border-radius: 10px;
+    width: 50vw;
+    border-radius: 20px 20px 0 0 ;
     display: flex;
     justify-content: space-around;
     gap: 10px;
     align-items: center;
     flex-wrap: wrap;
+    border-bottom: 1px solid black;
 }
 h1{
     font-size: 1.6rem;
@@ -32,9 +33,17 @@ h1{
     border: 1px solid black;
     padding: 10px 10px;
     border-radius: 10px;
-    width: auto;
-    text-align: center;
+    width: 20vw;
     font-size: 1.3rem;
+}
+@media (max-width: 940px){
+    #consultar_cep{
+        width: 45vw;
+        box-sizing: border-box;
+    }
+    h1{
+        color: red;
+    }
 }
 
 #enviar_consulta{
@@ -42,8 +51,11 @@ h1{
     border: 1px solid rgb(0, 0, 0);
     border-radius: 5px;
     background: none;
+    width: 10vw;
+    display: flex;
+    justify-content: center;
     cursor: pointer;
-    color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0);;
 }
 #enviar_consulta:active{
     box-shadow: inset 2.3px 2px 1px black;
@@ -64,6 +76,9 @@ h1{
 
 .formulario{
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
 }
 
